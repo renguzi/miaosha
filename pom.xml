@@ -105,11 +105,12 @@
             <artifactId>mybatis-generator-maven-plugin</artifactId>
             <version>1.3.5</version>
             <dependencies>
-              <dependency>
+<!--                mybatis-generator-core依赖可以不需要，参考：https://www.cnblogs.com/throwable/p/12046848.html-->
+            <!--  <dependency>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-core</artifactId>
                 <version>1.3.5</version>
-              </dependency>
+              </dependency>-->
               <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
