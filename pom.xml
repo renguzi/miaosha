@@ -125,6 +125,7 @@
                 </goals>
               </execution>
             </executions>
+<!--              考虑到项目中会反复生成，所有添加下述配置项-->
             <configuration>
 <!--              是否允许移动生成的文件-->
               <verbose>true</verbose>
