@@ -22,7 +22,6 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <!--生成DAO类存放位置-->
         <!--客户端代码,生成易于使用的针对Model对象和XML配置文件的代码
             type="ANNOTATEDMAPPER",生成Java Model和基于注解的Mapper对象
             type="MIXEDMAPPER",生成基于注解的Java Model和相应的mapper对象
