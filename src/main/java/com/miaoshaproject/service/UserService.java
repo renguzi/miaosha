@@ -1,6 +1,7 @@
 package com.miaoshaproject.service;
 
 import com.miaoshaproject.dataobject.UserDO;
+import com.miaoshaproject.service.model.UserModel;
 
 /**
  * @Author:asher
@@ -10,5 +11,5 @@ import com.miaoshaproject.dataobject.UserDO;
  */
 public interface UserService {
    //通过id获取用户对象的方法
-    void getUserById(Integer id);
+    UserModel getUserById(Integer id);
 }
