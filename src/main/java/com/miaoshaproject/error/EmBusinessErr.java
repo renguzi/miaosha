@@ -7,11 +7,12 @@ package com.miaoshaproject.error;
  * @Version:1.0
  */
 public enum EmBusinessErr implements CommonError {
-//    00001通用错误类型
-    PARAMETER_VALIDATAION_ERROR(00001,"参数不合法"),
+//    10001通用错误类型
+    PARAMETER_VALIDATAION_ERROR(10001,"参数不合法"),
+    UNKNOWN_ERROR(10002,"未知错误"),
 
-    //10000开头的为用户信息相关定义
-    USER_NOT_EXIST(10001,"用户不存在")
+    //20000开头的为用户信息相关定义
+    USER_NOT_EXIST(20001,"用户不存在")
     ;
 
     private int errCode;

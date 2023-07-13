@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author:asher
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller("user")
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController{
 
     @Autowired
     private UserService userService;
@@ -52,10 +54,4 @@ public class UserController {
         return userVO;
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.OK)
-    public Object handlerException(HttpServletRequest request, Exception exp) {
-
-        return null;
-    }
 }
