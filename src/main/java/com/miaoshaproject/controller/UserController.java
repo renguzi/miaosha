@@ -1,15 +1,18 @@
 package com.miaoshaproject.controller;
 
 import com.miaoshaproject.controller.viewobject.UserVO;
+import com.miaoshaproject.error.BusinessException;
+import com.miaoshaproject.error.EmBusinessErr;
 import com.miaoshaproject.response.CommonReturnType;
 import com.miaoshaproject.service.UserService;
 import com.miaoshaproject.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author:asher
@@ -26,9 +29,14 @@ public class UserController {
 
     @RequestMapping("/get")
     @ResponseBody
-    public CommonReturnType getUser(@RequestParam(name = "id") Integer id) {
+    public CommonReturnType getUser(@RequestParam(name = "id") Integer id) throws BusinessException {
         //调用service服务获取id对应的用户对象并返回给前端
         UserModel userModel = userService.getUserById(id);
+
+        if (userModel == null) {
+            throw new BusinessException(EmBusinessErr.USER_NOT_EXIST);
+        }
+
         //将核心领域模型userVO转换为供UI使用的viewobject
         UserVO userVO = convertFromUserModel(userModel);
 //        返回通用对象
@@ -44,5 +52,10 @@ public class UserController {
         return userVO;
     }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.OK)
+    public Object handlerException(HttpServletRequest request, Exception exp) {
 
+        return null;
+    }
 }
