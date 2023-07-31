@@ -61,6 +61,8 @@ public class UserServiceImpl implements UserService {
         userDO = convertFromModel(userModel);
         userDOMapper.insertSelective(userDO);
 
+        //不加下面的行,会导致密码表的user_id和用户表的id不匹配,且密码表的user_id一直是0
+        userModel.setId(userDO.getId());
         UserPasswordDO userPasswordDO = new UserPasswordDO();
         userPasswordDO = convertPasswordFromModel(userModel);
         userPasswordDOMapper.insertSelective(userPasswordDO);
