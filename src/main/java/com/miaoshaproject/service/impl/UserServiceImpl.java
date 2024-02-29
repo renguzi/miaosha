@@ -11,6 +11,7 @@ import com.miaoshaproject.service.model.UserModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +60,11 @@ public class UserServiceImpl implements UserService {
         UserDO userDO = new UserDO();
 //        实现model-->dataobject的方法
         userDO = convertFromModel(userModel);
-        userDOMapper.insertSelective(userDO);
+        try {
+            userDOMapper.insertSelective(userDO);
+        } catch (DuplicateKeyException ex) {
+            throw new BusinessException(EmBusinessErr.PARAMETER_VALIDATAION_ERROR, "手机号已注册");
+        }
 
         //不加下面的行,会导致密码表的user_id和用户表的id不匹配,且密码表的user_id一直是0
         userModel.setId(userDO.getId());
