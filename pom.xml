@@ -56,6 +56,12 @@
           <version>3.7</version>
       </dependency>
 
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>6.1.0.Final</version>
+      </dependency>
+
 
       <dependency>
       <groupId>junit</groupId>
@@ -147,5 +153,15 @@
           </plugin>
       </plugins>
     </pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>8</source>
+                  <target>8</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>

@@ -46,7 +46,6 @@ public class UserController extends BaseController{
                                      @RequestParam(name = "age")Integer age,
                                      @RequestParam(name="gender")Integer gender) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 //        验证手机号和对应的otpcode相符合
-
         String inSessionOtpCode= (String) this.httpServletRequest.getSession().getAttribute(telphone);
         if (!StringUtils.equals( otpCode,inSessionOtpCode)) {
             throw new BusinessException(EmBusinessErr.PARAMETER_VALIDATAION_ERROR,"短信验证码不符合");
@@ -63,6 +62,23 @@ public class UserController extends BaseController{
         userService.register(userModel);
         return CommonReturnType.create(null);
 
+    }
+
+    //    用户登录接口
+    @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType login(@RequestParam(name = "telphone") String telphone, @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+//        入参校验
+        if (org.apache.commons.lang3.StringUtils.isEmpty(telphone) || org.apache.commons.lang3.StringUtils.isEmpty(password)) {
+            throw new BusinessException(EmBusinessErr.PARAMETER_VALIDATAION_ERROR);
+        }
+// 用户登录服务
+        UserModel userModel = userService.validateLogin(telphone, this.EncodeByMd5(password));
+// 将登录凭证加入到用户登录成功的session内
+        this.httpServletRequest.getSession().setAttribute("IS_LOGIN", "TRUE");
+        this.httpServletRequest.getSession().setAttribute("LOGIN_USER", userModel);
+        System.out.println(this.httpServletRequest.getSession().getAttribute("IS_LOGIN").toString());
+        return CommonReturnType.create(null);
     }
 
     public String EncodeByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -85,11 +101,12 @@ public class UserController extends BaseController{
         int randomInt = random.nextInt(99999);
         randomInt += 10000;
         String otpCode = String.valueOf(randomInt);
+        System.out.println("code: "+ otpCode);
 //        2将otp验证码与用户手机号关联,使用httpsession的方式绑定手机号和otp
         httpServletRequest.getSession().setAttribute(telphone, otpCode);
 
 //        3将otp验证码发送给用户
-        System.out.println("telnphone = " + telphone + "otpcode +" + otpCode);
+        System.out.println("telnphone = " + telphone + "otpcode :" + otpCode);
         return CommonReturnType.create(null);
 
     }
