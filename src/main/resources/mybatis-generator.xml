@@ -39,7 +39,6 @@
         <table tableName="user_password" domainObjectName="UserPasswordDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" ></table>
-        -->
 
         <table tableName="item" domainObjectName="ItemDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
@@ -49,19 +48,19 @@
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
-        <!--因为要重新生成一次,所以注释下面这2张表
-        <table tableName="ORDER_INFO" domainObjectName="OrderDO" enableCountByExample="false"
+        <table tableName="order_info" domainObjectName="OrderDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
 
-        <table tableName="SEQUENCE_INFO" domainObjectName="SequenceDO" enableCountByExample="false"
+        <table tableName="sequence_info" domainObjectName="SequenceDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"></table>
-         -->
-<!--        <table tableName="stock_log" domainObjectName="StockLogDO" enableCountByExample="false"-->
-<!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
-<!--               enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <! 因为要重新生成一次,所以注释下面这2张表 -->
+
+        <table tableName="promo" domainObjectName="PromoDO" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
     </context>
 </generatorConfiguration>

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @Description:com.miaoshaproject.controller
  * @Version:1.0
  */
-@Controller("/item")
+@Controller("item")
 @RequestMapping("/item")
 @CrossOrigin(allowCredentials = "true",origins = {"*"})
 public class ItemController extends BaseController {

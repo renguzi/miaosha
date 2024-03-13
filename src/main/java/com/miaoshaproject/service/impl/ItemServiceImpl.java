@@ -114,4 +114,24 @@ public class ItemServiceImpl implements ItemService {
         return itemModel;
     }
 
+    @Override
+    @Transactional
+    public boolean decreaseStock(Integer itemId, Integer amount) throws BusinessException {
+        int affectedRows = itemStockDOMapper.decreaseStock(itemId, amount);
+        if (affectedRows > 0) {
+//            扣减库存成功
+            return true;
+//            throw new BusinessException(EmBusinessErr.PARAMETER_VALIDATAION_ERROR, "扣减库存失败");
+        } else {
+//            扣减库存失败
+            return false;
+        }
+    }
+
+    @Override
+    @Transactional
+    public void increaseSales(Integer itemId, Integer amount) {
+        itemDOMapper.increaseSales(amount, itemId);
+
+    }
 }
